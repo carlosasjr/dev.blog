@@ -74,6 +74,7 @@ img.img-slide-small{}
     z-index: 2;
     padding: 10px;
     text-transform: uppercase;
+    width: 100%;
 }
 .img-big{position: relative;
     padding: 0px;
@@ -110,10 +111,10 @@ img.img-post{
     margin-bottom: 6px;
 }
 p.description-post{
-    
-font-size: .8em;
-    
-color: #737272;
+
+    font-size: .8em;
+
+    color: #737272;
 }
 .btn-post{
     background: #ffab42;

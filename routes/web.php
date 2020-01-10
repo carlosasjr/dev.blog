@@ -24,10 +24,22 @@ Route::group(['prefix' => 'painel', 'namespace' => 'Painel', 'middleware' => 'au
     Route::any('categories/pesquisar', 'CategoryController@search')->name('categorias.search');
     Route::resource('categorias', 'CategoryController');
 
+
+    Route::any('posts/pesquisar', 'PostController@search')->name('posts.search');
+    Route::resource('posts', 'PostController');
+
     Route::get('/', 'PainelController@index')->name('painel');
 });
 
 //Rotas do Site
-Route::get('/', 'Site\SiteController@index')->name('home');
+Route::group(['namespace' => 'Site'], function () {
+    Route::get('/categoria/{url}', 'SiteController@category');
+    Route::get('/empresa', 'SiteController@company');
+    Route::get('/contato', 'SiteController@contact');
+
+
+    Route::get('/', 'SiteController@index')->name('home');
+});
+
 
 

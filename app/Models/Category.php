@@ -17,4 +17,9 @@ class Category extends Model
             'image'       => 'image'
         ];
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

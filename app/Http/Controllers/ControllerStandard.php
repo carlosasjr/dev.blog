@@ -71,7 +71,7 @@ class ControllerStandard extends BaseController
     public function create()
     {
         $title = "Cadastrar {$this->title}";
-        return view("{$this->view}.create");
+        return view("{$this->view}.create", compact('title'));
     }
 
 

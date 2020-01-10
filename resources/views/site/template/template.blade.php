@@ -1,3 +1,5 @@
+@inject('categories','App\Models\Category')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,7 @@
 <header class="top">
     <div class="container">
         <div class="logo col-md-6">
-            <a href="?pg=home">
+            <a href="{{ url('/') }}">
                 <img src="{{ url('assets/site/imgs/logo-especializati.png') }}" alt="EspecializaTi" class="logo">
             </a>
         </div>
@@ -57,22 +59,20 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="?pg=home">Home</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Categorias <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="?pg=categoria">PHP</a></li>
-                        <li><a href="?pg=categoria">JavaScript</a></li>
-                        <li><a href="?pg=categoria">jQuery</a></li>
-                        <li><a href="?pg=categoria">Ajax</a></li>
-                        <li><a href="?pg=categoria">SEO</a></li>
+                      @foreach($categories->all() as $category)
+                        <li><a href="{{ url("/categoria/{$category->url}") }}">{{ $category->name }}</a></li>
+                          @endforeach
                     </ul>
                 </li>
 
-                <li><a href="?pg=empresa">Empresa</a></li>
-                <li><a href="?pg=contato">Contato</a></li>
+                <li><a href="{{ url('empresa') }}">Empresa</a></li>
+                <li><a href="{{ url('contato') }}">Contato</a></li>
 
             </ul>
 
@@ -83,7 +83,7 @@
 
 <div class="container">
 
-@yield('content')
+    @yield('content')
 
 </div><!--End Container-->
 
