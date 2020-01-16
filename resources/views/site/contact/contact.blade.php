@@ -5,14 +5,30 @@
         <h1 class="title">Entre em Contato</h1>
         <h2 class="sub-title">Tenha todas as suas Dúvidas esclarecidas pela nossa equipe.</h2>
 
-        <form class="form form-contact">
-            <input type="text" name="nome" placeholder="Nome:">
-            <input type="email" name="email" placeholder="E-mail:">
-            <input type="text" name="assunto" placeholder="Assunto:">
-            <textarea placeholder="Mensagem:" name="mensagem"></textarea>
+        @if(Session::has('success'))
+            <div class="alert alert-success hide-msg">
+                {{ Session::get('success') }}
+            </div>
+        @endif
 
-            <button class="btn-contact">Enviar</button>
-        </form>
+        @if(isset($errors) && count($errors) > 0)
+            <div class="alert alert-warning">
+                @foreach($errors->all() as $error)
+                    <p>{{$error}}</p>
+                @endforeach
+            </div>
+        @endif
+
+
+        {!! Form::open(['route' => 'contact', 'class' => 'form form-contact']) !!}
+
+        {!! Form::text('name', null, ['placeholder' => 'Nome:']) !!}
+        {!! Form::email('email', null, ['placeholder' => 'E-mail:']) !!}
+        {!! Form::text('subject', null, ['placeholder' => 'Assunto:']) !!}
+        {!! Form::textarea('message', null, ['placeholder' => 'Mensagem:']) !!}
+
+        <button class="btn-contact">Enviar</button>
+        {!! Form::close() !!}
     </div>
 @endsection
 

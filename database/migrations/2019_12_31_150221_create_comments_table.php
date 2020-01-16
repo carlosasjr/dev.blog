@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('post_id')->unsigned();
 
+            $table->string('name');
+            $table->string('email');
             $table->text('description');
             $table->date('date');
             $table->time('hour');

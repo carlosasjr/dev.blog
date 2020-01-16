@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\CommentAnswered;
+use App\Events\PostViewed;
+use App\Listeners\ChangeStatusCommentAnswered;
+use App\Listeners\IncrementPostViewed;
+use App\Listeners\SendEmailCommentAnswered;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +23,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        PostViewed::class => [
+            IncrementPostViewed::class,
+        ],
+
+        CommentAnswered::class => [
+            SendEmailCommentAnswered::class,
+            ChangeStatusCommentAnswered::class
+        ]
     ];
 
     /**

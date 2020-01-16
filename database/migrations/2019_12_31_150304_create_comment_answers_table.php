@@ -17,7 +17,6 @@ class CreateCommentAnswersTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
             $table->bigInteger('comment_id')->unsigned();
 
             $table->text('description');
@@ -29,12 +28,6 @@ class CreateCommentAnswersTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
-
-
-            $table->foreign('post_id')
-                ->references('id')
-                ->on('posts')
                 ->onDelete('cascade');
 
             $table->foreign('comment_id')

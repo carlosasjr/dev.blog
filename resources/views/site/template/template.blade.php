@@ -1,6 +1,6 @@
 @inject('categories','App\Models\Category')
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,13 +33,14 @@
         </div>
 
         <div class="form col-md-6">
-            <form class="form form-search form-inline">
-                <input type="text" name="pesquisar" placeholder="Pesquisar?" class="form-control">
+            {!! Form::open(['route' => 'search.blog', 'class' => 'form form-search form-inline']) !!}
 
-                <button>
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </form>
+            {!! Form::text('key-search', null, ['class' => 'form-control', 'placeholder' => 'Pesquisar?']) !!}
+
+            <button>
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+            {!! Form::close() !!}
         </div>
     </div><!--End Container-->
 </header><!--End Header TOP-->
@@ -65,9 +66,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Categorias <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      @foreach($categories->all() as $category)
-                        <li><a href="{{ url("/categoria/{$category->url}") }}">{{ $category->name }}</a></li>
-                          @endforeach
+                        @foreach($categories->all() as $category)
+                            <li><a href="{{ url("/categoria/{$category->url}") }}">{{ $category->name }}</a></li>
+                        @endforeach
                     </ul>
                 </li>
 
@@ -100,6 +101,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
+@stack('scripts')
 </body>
 </html>
 

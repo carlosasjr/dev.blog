@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -30,5 +31,26 @@ class Post extends Model
             'status'        => 'required|in:A,R',
             'image'         => 'image',
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function views()
+    {
+        return $this->hasMany(PostView::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+
+
+        /*return $this->hasMany(Comment::class)
+                    ->join('users', 'users.id', 'comments.user_id')
+                    ->select('comments.id', 'comments.description', 'comments.name', 'users.image as image_user')
+            ->where('comments.status', 'A');*/
     }
 }

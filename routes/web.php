@@ -29,13 +29,25 @@ Route::group(['prefix' => 'painel', 'namespace' => 'Painel', 'middleware' => 'au
     Route::resource('posts', 'PostController');
 
     Route::get('/', 'PainelController@index')->name('painel');
+
+    Route::any('comentarios/pesquisar', 'CommentController@search')->name('comentarios.search');
+    Route::get('comentarios/{id}/resposta', 'CommentController@answers')->name('comentarios.answers');
+    Route::post('comentarios/{id}/answer', 'CommentController@answersComment')->name('answerComment');
+
+    Route::get('comentarios/{idComentario}/answer/{idResposta}', 'CommentController@destroyAnswer')->name('answer.destroy');
+
+    Route::resource('comentarios', 'CommentController');
 });
 
 //Rotas do Site
 Route::group(['namespace' => 'Site'], function () {
+    Route::get('/tutorial/{url}', 'SiteController@post')->name('post');
     Route::get('/categoria/{url}', 'SiteController@category');
     Route::get('/empresa', 'SiteController@company');
     Route::get('/contato', 'SiteController@contact');
+    Route::post('/contact', 'SiteController@sendContact')->name('contact');
+    Route::post('/comment-post', 'SiteController@commentPost')->name('comment');
+    Route::any('/pesquisar', 'SiteController@search')->name('search.blog');
 
 
     Route::get('/', 'SiteController@index')->name('home');
