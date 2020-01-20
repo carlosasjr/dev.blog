@@ -3,7 +3,7 @@
 @section('content')
     <div class="bred">
         <a href="{{route('painel')}}" class="bred">Home ></a>
-        <a href="{{route('usuarios.index')}}" class="bred">Usuários</a>
+        <a href="{{route('users.index')}}" class="bred">Usuários</a>
     </div>
 
     <div class="title-pg">
@@ -29,7 +29,7 @@
         <h2><strong>Site: </strong>{{ $data->site }}</h2>
         <h2><strong>Bibliografia: </strong>{{ $data->bibliograply }}</h2>
 
-            {!! Form::model($data, ['route' => ['usuarios.destroy', $data->id], 'class' => 'form form-search form-ds', 'method' => 'delete']) !!}
+            {!! Form::model($data, ['route' => ['users.destroy', $data->id], 'class' => 'form form-search form-ds', 'method' => 'delete']) !!}
 
         <div class="form-group">
             {!! Form::submit("Deletar Usuário: {$data->name}" , ['class' => 'btn btn-danger']) !!}

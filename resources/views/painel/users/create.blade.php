@@ -3,7 +3,7 @@
 @section('content')
     <div class="bred">
         <a href="{{route('painel')}}" class="bred">Home ></a>
-        <a href="{{route('usuarios.index')}}" class="bred">Usuários</a>
+        <a href="{{route('users.index')}}" class="bred">Usuários</a>
     </div>
 
 
@@ -22,9 +22,9 @@
         @endif
 
         @if(isset($data))
-            {!! Form::model($data, ['route' => ['usuarios.update', $data->id], 'class' => 'form form-search form-ds', 'files' => true, 'method' => 'put']) !!}
+            {!! Form::model($data, ['route' => ['users.update', $data->id], 'class' => 'form form-search form-ds', 'files' => true, 'method' => 'put']) !!}
         @else
-            {!! Form::open(['route' => 'usuarios.store', 'class' => 'form form-search form-ds', 'files' => true]) !!}
+            {!! Form::open(['route' => 'users.store', 'class' => 'form form-search form-ds', 'files' => true]) !!}
         @endif
 
 

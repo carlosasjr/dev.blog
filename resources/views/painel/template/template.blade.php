@@ -34,7 +34,7 @@
             </li>
 
             <li>
-                <a href="{{ url('/painel/usuarios')  }}">
+                <a href="{{ url('/painel/users')  }}">
                     <i class="fa fa-id-card" aria-hidden="true"></i>
                     Usuários
                 </a>
@@ -58,6 +58,21 @@
                 <a href="{{ url('/painel/comentarios') }}">
                     <i class="fa fa-comments" aria-hidden="true"></i>
                     Comentários
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url('/painel/profiles') }}">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    Perfis
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{{ url('/painel/permissions') }}">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    Permissões
                 </a>
             </li>
         </ul>

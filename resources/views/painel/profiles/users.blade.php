@@ -3,17 +3,17 @@
 @section('content')
 
     <div class="bred">
-        <a href="{{route('painel')}}" class="bred">Home ></a> <a href="{{route('users.index')}}" class="bred">Usuários</a>
+        <a href="{{route('painel')}}" class="bred">Home ></a> <a href="{{route('profiles.index')}}" class="bred">Perfil</a>
     </div>
 
     <div class="title-pg">
-        <h1 class="title-pg">Listagem dos Usuários</h1>
+        <h1 class="title-pg">Usuários do perfil: <b>{{ $profile->name }}</b></h1>
     </div>
 
     <div class="content-din bg-white">
 
         <div class="form-search">
-            {!! Form::open(['route' => 'users.search', 'class' => 'form form-inline']) !!}
+            {!! Form::open(['route' => ['profiles.users.search', $profile->id], 'class' => 'form form-inline']) !!}
 
             {!! Form::text('pesquisa', null, ['class' => 'form-control', 'placeholder' => 'Pesquisa']) !!}
 
@@ -30,7 +30,7 @@
         @endif
 
         <div class="class-btn-insert">
-            <a href="{{ route('users.create') }}" class="btn-insert">
+            <a href="{{ route('profiles.users.list', $profile->id) }}" class="btn-insert">
                 <span class="glyphicon glyphicon-plus"></span>
                 Cadastrar
             </a>
@@ -39,35 +39,29 @@
         <table class="table table-striped">
             <tr>
                 <th>Nome</th>
-                <th>E-mail</th>
-                <th>Facebook</th>
-                <th width="300">Ações</th>
+                <th>e-mail</th>
+                <th width="150">Ações</th>
             </tr>
 
-            @forelse($data as $user)
+            @forelse($users as $user)
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->facebook }}</td>
                     <td>
-                        <a href="{{ route('users.edit', $user->id) }}" class="edit"><span
-                                class="glyphicon glyphicon-pencil"></span> Editar</a>
-                        <a href="{{ route('users.show', $user->id) }}" class="delete"><span
-                                class="glyphicon glyphicon-eye-open"></span>Visualizar</a>
+                        <a href="{{ route('profiles.users.delete', [$profile->id, $user->id]) }}" class="delete"><span
+                                class="glyphicon glyphicon-trash"></span> Deletar</a>
 
-                        <a href="{{ route('users.profiles', $user->id) }}" class="edit">
-                            <i class="fa fa fa-users"></i> Perfis</a>
                     </td>
                 </tr>
             @empty
-                <p>Nenhum Usuário Cadastrado</p>
+                <p>Nenhum Usuário Vinculado ao Perfil</p>
             @endforelse
         </table>
 
         @if(isset($dataForm))
-            {!! $data->appends($dataForm)->links() !!}
+            {!! $users->appends($dataForm)->links() !!}
         @else
-            {!! $data->links() !!}
+            {!! $users->links() !!}
         @endif
 
     </div><!--Content Dinâmico-->

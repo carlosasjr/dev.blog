@@ -55,8 +55,7 @@
                             {!! Str::limit($post->description, 200) !!}
                         </p>
 
-                        <a class="btn-post" href="{{ url("/tutorial/{$post->url}") }}">Ir <span
-                                class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a class="btn-post" href="{{ url("/tutorial/{$post->url}") }}">Ir <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </article>
             @empty

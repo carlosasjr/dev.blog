@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Profile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -81,4 +82,13 @@ class User extends Authenticatable
             'image' => 'image'
         ];
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class, 'profile_user');
+    }
+
 }
