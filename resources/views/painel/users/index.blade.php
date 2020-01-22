@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="bred">
-        <a href="{{route('painel')}}" class="bred">Home ></a> <a href="{{route('users.index')}}" class="bred">Usuários</a>
+        <a href="{{route('painel')}}" class="bred">Home ></a> <a href="{{route('users.index')}}"
+                                                                 class="bred">Usuários</a>
     </div>
 
     <div class="title-pg">
@@ -29,12 +30,14 @@
             </div>
         @endif
 
-        <div class="class-btn-insert">
-            <a href="{{ route('users.create') }}" class="btn-insert">
-                <span class="glyphicon glyphicon-plus"></span>
-                Cadastrar
-            </a>
-        </div>
+        @can('create_user')
+            <div class="class-btn-insert">
+                <a href="{{ route('users.create') }}" class="btn-insert">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Cadastrar
+                </a>
+            </div>
+        @endcan
 
         <table class="table table-striped">
             <tr>
@@ -50,10 +53,15 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->facebook }}</td>
                     <td>
-                        <a href="{{ route('users.edit', $user->id) }}" class="edit"><span
-                                class="glyphicon glyphicon-pencil"></span> Editar</a>
-                        <a href="{{ route('users.show', $user->id) }}" class="delete"><span
-                                class="glyphicon glyphicon-eye-open"></span>Visualizar</a>
+                        @can('update_user')
+                            <a href="{{ route('users.edit', $user->id) }}" class="edit"><span
+                                    class="glyphicon glyphicon-pencil"></span> Editar</a>
+                        @endcan
+
+                        @can('view_user')
+                            <a href="{{ route('users.show', $user->id) }}" class="delete"><span
+                                    class="glyphicon glyphicon-eye-open"></span>Visualizar</a>
+                        @endcan
 
                         <a href="{{ route('users.profiles', $user->id) }}" class="edit">
                             <i class="fa fa fa-users"></i> Perfis</a>

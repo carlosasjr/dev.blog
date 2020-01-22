@@ -147,7 +147,6 @@ class ProfileController extends ControllerStandard
 
         $profile = $this->model->find($id);
 
-
         $permissions = $profile->permissions()
             ->where(function ($query) use ($dataForm) {
                 $query->where('permissions.name', 'like', "%{$dataForm['pesquisa']}%")

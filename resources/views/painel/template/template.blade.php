@@ -33,48 +33,62 @@
                 </a>
             </li>
 
+            @can('users')
             <li>
                 <a href="{{ url('/painel/users')  }}">
                     <i class="fa fa-id-card" aria-hidden="true"></i>
                     Usuários
                 </a>
             </li>
+            @endcan
 
+
+            @can('categories')
             <li>
                 <a href="{{ url('/painel/categorias') }}">
                     <i class="fa fa-cubes" aria-hidden="true"></i>
                     Categorias
                 </a>
             </li>
+            @endcan
 
+            @can('posts')
             <li>
                 <a href="{{ url('/painel/posts') }}">
                     <i class="fa fa-file" aria-hidden="true"></i>
                     Posts
                 </a>
             </li>
+            @endcan
 
+            @can('comments')
             <li>
                 <a href="{{ url('/painel/comentarios') }}">
                     <i class="fa fa-comments" aria-hidden="true"></i>
                     Comentários
                 </a>
             </li>
+            @endcan
 
+            @can('profiles')
             <li>
                 <a href="{{ url('/painel/profiles') }}">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     Perfis
                 </a>
             </li>
+            @endcan
 
 
+            @can('permissions')
             <li>
                 <a href="{{ url('/painel/permissions') }}">
                     <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                     Permissões
                 </a>
             </li>
+            @endcan
+
         </ul>
     </div>
 

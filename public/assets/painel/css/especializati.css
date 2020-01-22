@@ -3,7 +3,7 @@
     background: #2a3f54;
     float: left;
     padding: 8px;
-    width: 72px;
+    width: 100px;
     text-align: center;
     min-height: 100vh;
     position: fixed;
@@ -36,8 +36,8 @@ ul.menu-list li a i{
     float: left;
     background: #f7f7f7;
     min-height: 100vh;
-    width: calc(100% - 72px);
-    margin-left: 72px;
+    width: calc(100% - 100px);
+    margin-left: 100px;
 }
 .top-dashboard{
     width: 100%;
@@ -99,6 +99,8 @@ h1.title-pg{
     padding: 6px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    width: 80px;
+    text-align: center;
 }
 .text-rel{
     float: left;

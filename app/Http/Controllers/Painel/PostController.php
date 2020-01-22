@@ -7,6 +7,7 @@ use App\Http\Controllers\ControllerStandard;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends ControllerStandard
 {
@@ -14,7 +15,7 @@ class PostController extends ControllerStandard
     {
         $this->model = $post;
         $this->title = 'Post';
-        $this->view  = 'painel.posts';
+        $this->view = 'painel.posts';
         $this->route = 'posts';
         $this->upload = [
             'name' => 'image',
@@ -27,10 +28,40 @@ class PostController extends ControllerStandard
      */
     public function create()
     {
+        //usando Gate Automático
+        if (Gate::denies('create_post')) {
+            abort(403, 'Oppss...Você não tem permissão para cadastrar ');
+        }
+
         $title = "Cadastrar {$this->title}";
         $categories = Category::get()->pluck('name', 'id');
         return view("{$this->view}.create", compact('title', 'categories'));
     }
+
+
+    public function show($id)
+    {
+        $data = $this->model->find($id);
+
+        //utilizando policy
+      //  $this->authorize('owner', $data);
+
+       /* if (Gate::denies('post_view', $data)) {
+            return redirect()->route('posts.index')
+                             ->withErrors(['errors' => 'Usuário sem permissão para visualizar']);
+        }*/
+
+
+       //usando Gate Automático
+        if (Gate::denies('view_post')) {
+            abort(403, 'Oppss...Você não tem permissão para visualizar ');
+        }
+
+        $title = "{$this->title}: {$data->name}";
+
+        return view("{$this->view}.show", compact('title', 'data'));
+    }
+
 
     /**
      * @param Request $request

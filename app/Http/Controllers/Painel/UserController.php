@@ -20,6 +20,13 @@ class UserController extends ControllerStandard
             'name' => 'image',
             'patch' => 'users'
         ];
+
+        $this->middleware('can:users');
+
+        $this->middleware('can:create_user')->only(['create', 'store']);
+        $this->middleware('can:update_user')->only(['edit', 'update']);
+        $this->middleware('can:view_user')->only(['show']);
+        $this->middleware('can:delete_user')->only(['delete']);
     }
 
     public function search(Request $request)

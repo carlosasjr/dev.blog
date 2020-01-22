@@ -29,6 +29,15 @@
             </div>
         @endif
 
+
+        @if(isset($errors) && count($errors) > 0)
+            <div class="alert alert-warning hide-msg">
+                @foreach($errors->all() as $error)
+                    <p>{{$error}}</p>
+                @endforeach
+            </div>
+        @endif
+
         <div class="class-btn-insert">
             <a href="{{ route('posts.create') }}" class="btn-insert">
                 <span class="glyphicon glyphicon-plus"></span>
@@ -48,8 +57,11 @@
                     <td>
                         <a href="{{ route('posts.edit', $post->id) }}" class="edit"><span
                                 class="glyphicon glyphicon-pencil"></span> Editar</a>
+
+
                         <a href="{{ route('posts.show', $post->id) }}" class="delete"><span
                                 class="glyphicon glyphicon-eye-open"></span>Visualizar</a>
+
                     </td>
                 </tr>
             @empty

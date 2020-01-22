@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Permission;
 use App\Models\Profile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -89,6 +90,22 @@ class User extends Authenticatable
     public function profiles()
     {
         return $this->belongsToMany(Profile::class, 'profile_user');
+    }
+
+
+    public function hasPermission(Permission $permission)
+    {
+        return $this->hasProfile($permission->profiles()->get());
+    }
+
+
+    public function hasProfile($profile)
+    {
+        if (is_string($profile)) {
+            return $this->profiles()->get()->contains('name', $profile);
+        }
+
+        return !!$profile->intersect($this->profiles()->get())->count();
     }
 
 }
